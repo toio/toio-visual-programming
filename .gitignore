@@ -1,0 +1,7 @@
+/node_modules
+/dist
+/releases
+*.log
+.cache
+coverage
+.DS_STORE

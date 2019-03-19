@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`"getColumnIndex" block gets a column index on a grid mat correctly 1`] = `4`;
+
+exports[`"getRowIndex" block gets a y position on a mat correctly 1`] = `-3`;

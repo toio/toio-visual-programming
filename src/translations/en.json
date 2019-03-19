@@ -1,0 +1,63 @@
+{
+  "toio.moveFor": "move [DIRECTION] at [SPEED] speed for [DURATION] seconds",
+  "toio.moveForMenu.forward": "forward",
+  "toio.moveForMenu.backward": "backward",
+  "toio.rotateFor": "rotate [DIRECTION] at [SPEED] speed for [DURATION] seconds",
+  "toio.rotateForMenu.left": "left",
+  "toio.rotateForMenu.right": "right",
+  "toio.moveWheelsFor": "move left wheel forward at [LEFT_SPEED] speed and right wheel forward at [RIGHT_SPEED] speed for [DURATION] seconds",
+  "toio.moveTo": "move to x: [X] y: [Y]",
+  "toio.pointInDirection": "point in direction [DIRECTION]",
+  "toio.stopWheels": "stop wheels",
+
+  "toio.setLightColorFor": "set light color to [COLOR] for [DURATION] seconds",
+  "toio.turnOffLight": "turn off light",
+
+  "toio.playNoteFor": "play note [NOTE] for [DURATION] seconds",
+  "toio.stopNote": "stop note",
+
+  "toio.stateTypeMenu.x": "x position",
+  "toio.stateTypeMenu.y": "y position",
+  "toio.stateTypeMenu.direction": "direction",
+
+  "toio.moveToOnGrid": "move to column: [COLUMN] row: [ROW]",
+  "toio.getColumnOrRowIndex": "[MAT_AXES] index on grid",
+  "toio.getColumnOrRowIndexMenu.column": "column",
+  "toio.getColumnOrRowIndexMenu.row": "row",
+  "toio.getColumnIndex": "column index on grid",
+  "toio.getRowIndex": "row index on grid",
+
+  "toio.whenTouched": "when [TYPE] is touched",
+  "toio.isTouched": "[TYPE] is touched",
+  
+  "toio.whenTouchedMenu.mat": "mat",
+
+  "toio.whenTouchedMenu.frontCard": "front card",
+  "toio.whenTouchedMenu.backCard": "back card",
+  "toio.whenTouchedMenu.leftCard": "left card",
+  "toio.whenTouchedMenu.rightCard": "right card",
+  "toio.whenTouchedMenu.goCard": "go card",
+  "toio.whenTouchedMenu.typhoonCard": "typhoon card",
+  "toio.whenTouchedMenu.rushCard": "rush card",
+  "toio.whenTouchedMenu.autoTackleCard": "auto tackle card",
+  "toio.whenTouchedMenu.randomCard": "random card",
+  "toio.whenTouchedMenu.pushPowerUpCard": "push power up card",
+  "toio.whenTouchedMenu.strutPowerUpCard": "strut power up card",
+  "toio.whenTouchedMenu.sideAttackCard": "side attack card",
+  "toio.whenTouchedMenu.easyModeCard": "easy mode card",
+  "toio.whenTouchedMenu.anyCard": "any card",    
+
+  "toio.whenTouchedMenu.spinSticker": "spin sticker",
+  "toio.whenTouchedMenu.shockSticker": "shock sticker",
+  "toio.whenTouchedMenu.wobbleSticker": "wobble sticker",
+  "toio.whenTouchedMenu.panicSticker": "panic sticker",
+  "toio.whenTouchedMenu.speedUpSticker": "speed up sticker",
+  "toio.whenTouchedMenu.speedDownSticker": "speed down sticker",
+  "toio.whenTouchedMenu.anySticker": "any sticker",
+
+  "toio.whenTouchedMenu.whiteCell": "white cell",
+  "toio.whenTouchedMenu.redCell": "red cell",
+  "toio.whenTouchedMenu.greenCell": "green cell",
+  "toio.whenTouchedMenu.yellowCell": "yellow cell",
+  "toio.whenTouchedMenu.blueCell": "blue cell"
+}

@@ -1,0 +1,63 @@
+{
+  "toio.moveFor": "[DIRECTION]に速さ[SPEED]%で[DURATION]秒動かす",
+  "toio.moveForMenu.forward": "前",
+  "toio.moveForMenu.backward": "後ろ",
+  "toio.rotateFor": "[DIRECTION]に速さ[SPEED]%で[DURATION]秒回す",
+  "toio.rotateForMenu.left": "左",
+  "toio.rotateForMenu.right": "右",
+  "toio.moveWheelsFor": "左タイヤを速さ[LEFT_SPEED]%、右タイヤを速さ[RIGHT_SPEED]%で[DURATION]秒動かす",
+  "toio.moveTo": "x座標[X]、y座標[Y]へ動かす",
+  "toio.pointInDirection": "[DIRECTION]度に向ける",
+  "toio.stopWheels": "タイヤを止める",
+
+  "toio.setLightColorFor": "ランプの色[COLOR]を[DURATION]秒つける",
+  "toio.turnOffLight": "ランプを消す",
+
+  "toio.playNoteFor": "音[NOTE]を[DURATION]秒鳴らす",
+  "toio.stopNote": "音を止める",
+
+  "toio.stateTypeMenu.x": "x座標",
+  "toio.stateTypeMenu.y": "y座標",
+  "toio.stateTypeMenu.direction": "向き",
+
+  "toio.moveToOnGrid": "列[COLUMN]、行[ROW]のマスへ動かす",
+  "toio.getColumnOrRowIndex": "マスの[MAT_AXES]番号",
+  "toio.getColumnOrRowIndexMenu.column": "列",
+  "toio.getColumnOrRowIndexMenu.row": "行",
+  "toio.getColumnIndex": "マスの列番号",
+  "toio.getRowIndex": "マスの行番号",
+
+  "toio.whenTouched": "[TYPE]に触れたとき",
+  "toio.isTouched": "[TYPE]に触れた",
+  
+  "toio.whenTouchedMenu.mat": "マット",
+
+  "toio.whenTouchedMenu.frontCard": "前カード",
+  "toio.whenTouchedMenu.backCard": "後ろカード",
+  "toio.whenTouchedMenu.leftCard": "左カード",
+  "toio.whenTouchedMenu.rightCard": "右カード",
+  "toio.whenTouchedMenu.goCard": "Goカード",  
+  "toio.whenTouchedMenu.typhoonCard": "タイフーンカード",
+  "toio.whenTouchedMenu.rushCard": "ラッシュカード",
+  "toio.whenTouchedMenu.autoTackleCard": "オートタックルカード",
+  "toio.whenTouchedMenu.randomCard": "ランダムカード",
+  "toio.whenTouchedMenu.pushPowerUpCard": "ツキパワーアップカード",
+  "toio.whenTouchedMenu.strutPowerUpCard": "ハリテパワーアップカード",
+  "toio.whenTouchedMenu.sideAttackCard": "サイドアタックカード",
+  "toio.whenTouchedMenu.easyModeCard": "イージーモードカード",
+  "toio.whenTouchedMenu.anyCard": "どれかのカード",
+
+  "toio.whenTouchedMenu.spinSticker": "スピンシール",
+  "toio.whenTouchedMenu.shockSticker": "ショックシール",
+  "toio.whenTouchedMenu.wobbleSticker": "ふらつきシール",
+  "toio.whenTouchedMenu.panicSticker": "パニックシール",
+  "toio.whenTouchedMenu.speedUpSticker": "スピードアップシール",
+  "toio.whenTouchedMenu.speedDownSticker": "スピードダウンシール",
+  "toio.whenTouchedMenu.anySticker": "どれかのシール",
+
+  "toio.whenTouchedMenu.whiteCell": "白のマス",
+  "toio.whenTouchedMenu.redCell": "赤のマス",
+  "toio.whenTouchedMenu.greenCell": "緑のマス",
+  "toio.whenTouchedMenu.yellowCell": "黄のマス",
+  "toio.whenTouchedMenu.blueCell": "青のマス"
+}

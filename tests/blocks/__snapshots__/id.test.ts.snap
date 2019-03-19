@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`"getDirection" block gets a direction on a mat correctly 1`] = `135`;
+
+exports[`"getXPosition" block gets a x position on a mat correctly 1`] = `-45`;
+
+exports[`"getYPosition" block gets a y position on a mat correctly 1`] = `-47.220779220779214`;
