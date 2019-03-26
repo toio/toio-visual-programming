@@ -8,7 +8,8 @@
 const translations = {
   en: require('./en.json'),
   ja: require('./ja.json'),
-  'ja-Hira': require('./ja-Hira.json')
+  'ja-Hira': require('./ja-Hira.json'),
+  'zh-CN': require('./zh-CN.json')
 }
 
 export default translations
