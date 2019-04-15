@@ -55,10 +55,26 @@ class Gui {
     return require('./default-project').default
   }
 
-  public filter(sprites: any[]) {
-    return sprites.filter(
-      (sprite: any) => !SCRATCH_TRADEMARKS.includes(sprite.name)
-    )
+  public filter(assets: any[]) {
+    switch (assets[0].type) {
+      case 'sprite':
+        return assets.filter(
+          (asset: any) => !SCRATCH_TRADEMARKS.includes(asset.name)
+        )
+
+      case 'costume':
+        return assets.filter((asset: any) => {
+          for (const keyword of SCRATCH_TRADEMARKS) {
+            if (asset.name.startsWith(keyword + '-')) {
+              return false
+            }
+          }
+          return true
+        })
+
+      default:
+        break
+    }
   }
 }
 
