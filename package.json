@@ -1,6 +1,6 @@
 {
   "name": "toio-visual-programming",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Visual programming for \"toio\"",
   "main": "./dist/index.js",
   "author": "Sony Interactive Entertainment Inc.",
