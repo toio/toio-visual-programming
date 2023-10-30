@@ -195,7 +195,7 @@ var handleTelemetryModalOptOut = function handleTelemetryModalOptOut() {
     showComingSoon: true,
     backpackHost: backpackHost,
     canSave: false,
-    onClickLogo: scratch_mod__WEBPACK_IMPORTED_MODULE_7__["onClickLogoCustomized"] || onClickLogo,
+    onClickLogo: onClickLogo,
     isFullScreen: Object(scratch_mod__WEBPACK_IMPORTED_MODULE_7__["isFullscreen"])()
   }), appTarget);
 });
