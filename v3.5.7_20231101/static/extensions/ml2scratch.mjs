@@ -6573,8 +6573,17 @@ var FORWARD_REF_STATICS = {
   displayName: true,
   propTypes: true
 };
+var MEMO_STATICS = {
+  '$$typeof': true,
+  compare: true,
+  defaultProps: true,
+  displayName: true,
+  propTypes: true,
+  type: true
+};
 var TYPE_STATICS = {};
 TYPE_STATICS[reactIs.ForwardRef] = FORWARD_REF_STATICS;
+TYPE_STATICS[reactIs.Memo] = MEMO_STATICS;
 
 /**
  * Use invariant() to assert state which your program assumes to be true.
@@ -13393,6 +13402,13 @@ var Message = {
     'en': 'The first training will take a while, so do not click again and again.',
     'zh-cn': '第一项研究需要一段时间，所以不要一次又一次地点击。',
     'zh-tw': '第一次訓練需要一段時間，請稍後，不要一直點擊。'
+  },
+  switch_webcam: {
+    'ja': 'カメラを[DEVICE]に切り替える',
+    'ja-Hira': 'カメラを[DEVICE]にきりかえる',
+    'en': 'switch webcam to [DEVICE]',
+    'zh-cn': '网络摄像头切换到[DEVICE]',
+    'zh-tw': '網路攝影機切換到[DEVICE]'
   }
 };
 var AvailableLocales = ['en', 'ja', 'ja-Hira', 'zh-cn', 'zh-tw'];
@@ -13433,6 +13449,49 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
         _this.classify();
       }, _this.interval);
     });
+    this.devices = [{
+      text: 'default',
+      value: ''
+    }];
+    var dialog = document.createElement("DIALOG");
+    dialog.id = "upload-dialog";
+    dialog.innerHTML = "\n      <html><body>\n      <div>".concat(Message.upload_instruction[this.locale], "</p><input type=\"file\" id=\"upload-files\"><input type=\"button\" value=\"").concat(Message.upload[this.locale], "\" id=\"upload-button\"></div>\n      <div style=\"margin-top:10px;display:flex;justify-content:flex-end;\"><button id=\"close\" aria-label=\"close\" formnovalidate>\u9589\u3058\u308B</button></div>\n      </body><body>\n    ");
+    this.uploadDialog = dialog;
+    document.body.appendChild(dialog);
+
+    document.getElementById("upload-button").onclick = function () {
+      _this.uploadButtonClicked();
+    };
+
+    document.getElementById("close").onclick = function () {
+      dialog.close();
+    };
+
+    try {
+      navigator.mediaDevices.enumerateDevices().then(function (media) {
+        var _iterator = _createForOfIteratorHelper(media),
+            _step;
+
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var device = _step.value;
+
+            if (device.kind === 'videoinput') {
+              _this.devices.push({
+                text: device.label,
+                value: device.deviceId
+              });
+            }
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+      });
+    } catch (e) {
+      console.error("failed to load media devices!");
+    }
   }
 
   _createClass(Scratch3ML2ScratchBlocks, [{
@@ -13638,6 +13697,17 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
               defaultValue: 'webcam'
             }
           }
+        }, {
+          opcode: 'switchCamera',
+          blockType: blockType.COMMAND,
+          text: Message.switch_webcam[this.locale],
+          arguments: {
+            DEVICE: {
+              type: argumentType.STRING,
+              defaultValue: '',
+              menu: 'mediadevices'
+            }
+          }
         }],
         menus: {
           received_menu: {
@@ -13658,7 +13728,11 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
             items: this.getClassificationIntervalMenu()
           },
           classification_menu: this.getClassificationMenu(),
-          input_menu: this.getInputMenu()
+          input_menu: this.getInputMenu(),
+          mediadevices: {
+            acceptReporters: true,
+            items: 'getDevices'
+          }
         }
       };
     }
@@ -13904,34 +13978,15 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
   }, {
     key: "upload",
     value: function upload() {
-      var _this4 = this;
-
       if (this.actionRepeated()) {
         return;
       }
-      var width = 480;
-      var height = 200;
-      var left = window.innerWidth / 2;
-      var top = window.innerHeight / 2;
-      var x = left - width / 2;
-      var y = top - height / 2;
-      uploadWindow = window.open('', null, 'top=' + y + ',left=' + x + ',width=' + width + ',height=' + height);
-      uploadWindow.document.open();
-      uploadWindow.document.write('<html><head><title>' + Message.upload_learning_data[this.locale] + '</title></head><body>');
-      uploadWindow.document.write('<p>' + Message.upload_instruction[this.locale] + '</p>');
-      uploadWindow.document.write('<input type="file" id="upload-files">');
-      uploadWindow.document.write('<input type="button" value="' + Message.upload[this.locale] + '" id="upload-button">');
-      uploadWindow.document.write('</body></html>');
-      uploadWindow.document.close();
-
-      uploadWindow.document.getElementById("upload-button").onclick = function () {
-        _this4.uploadButtonClicked(uploadWindow);
-      };
+      document.getElementById('upload-dialog').showModal();
     }
   }, {
     key: "toggleClassification",
     value: function toggleClassification(args) {
-      var _this5 = this;
+      var _this4 = this;
 
       var state = args.CLASSIFICATION_STATE;
 
@@ -13941,14 +13996,14 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
 
       if (state === 'on') {
         this.timer = setInterval(function () {
-          _this5.classify();
+          _this4.classify();
         }, this.interval);
       }
     }
   }, {
     key: "setClassificationInterval",
     value: function setClassificationInterval(args) {
-      var _this6 = this;
+      var _this5 = this;
 
       if (this.timer) {
         clearTimeout(this.timer);
@@ -13956,13 +14011,13 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
 
       this.interval = args.CLASSIFICATION_INTERVAL * 1000;
       this.timer = setInterval(function () {
-        _this6.classify();
+        _this5.classify();
       }, this.interval);
     }
   }, {
     key: "videoToggle",
     value: function videoToggle(args) {
-      var _this7 = this;
+      var _this6 = this;
 
       var state = args.VIDEO_STATE;
 
@@ -13970,7 +14025,7 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
         this.runtime.ioDevices.video.disableVideo();
       } else {
         this.runtime.ioDevices.video.enableVideo().then(function () {
-          _this7.input = _this7.runtime.ioDevices.video.provider.video;
+          _this6.input = _this6.runtime.ioDevices.video.provider.video;
         });
         this.runtime.ioDevices.video.mirror = state === "on";
       }
@@ -14003,13 +14058,13 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
     }
   }, {
     key: "uploadButtonClicked",
-    value: function uploadButtonClicked(uploadWindow) {
-      var _this8 = this;
+    value: function uploadButtonClicked() {
+      var _this7 = this;
 
-      var files = uploadWindow.document.getElementById('upload-files').files;
+      var files = document.getElementById('upload-files').files;
 
       if (files.length <= 0) {
-        uploadWindow.alert('Please select JSON file.');
+        alert('Please select JSON file.');
         return false;
       }
 
@@ -14018,26 +14073,26 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
       fr.onload = function (e) {
         var data = JSON.parse(e.target.result);
 
-        _this8.knnClassifier.load(data, function () {
+        _this7.knnClassifier.load(data, function () {
           console.log('uploaded!');
 
-          _this8.updateCounts();
+          _this7.updateCounts();
 
-          alert(Message.uploaded[_this8.locale]);
+          alert(Message.uploaded[_this7.locale]);
         });
       };
 
       fr.onloadend = function (e) {
-        uploadWindow.document.getElementById('upload-files').value = "";
+        document.getElementById('upload-files').value = "";
       };
 
       fr.readAsText(files.item(0));
-      uploadWindow.close();
+      this.uploadDialog.close();
     }
   }, {
     key: "classify",
     value: function classify() {
-      var _this9 = this;
+      var _this8 = this;
 
       var numLabels = this.knnClassifier.getNumLabels();
       if (numLabels == 0) return;
@@ -14046,9 +14101,9 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
         if (err) {
           console.error(err);
         } else {
-          _this9.label = _this9.getTopConfidenceLabel(result.confidencesByLabel);
-          _this9.when_received = true;
-          _this9.when_received_arr[_this9.label] = true;
+          _this8.label = _this8.getTopConfidenceLabel(result.confidencesByLabel);
+          _this8.when_received = true;
+          _this8.when_received_arr[_this8.label] = true;
         }
       });
     }
@@ -14195,6 +14250,41 @@ var Scratch3ML2ScratchBlocks = /*#__PURE__*/function () {
       } else {
         return 'en';
       }
+    }
+  }, {
+    key: "switchCamera",
+    value: function switchCamera(args) {
+      var _this9 = this;
+
+      if (args.DEVICE !== '') {
+        if (this.runtime.ioDevices.video.provider._track !== null) {
+          this.runtime.ioDevices.video.provider._track.stop();
+
+          var deviceId = args.DEVICE;
+          navigator.mediaDevices.getUserMedia({
+            audio: false,
+            video: {
+              deviceId: deviceId
+            }
+          }).then(function (stream) {
+            try {
+              _this9.runtime.ioDevices.video.provider._video.srcObject = stream;
+            } catch (error) {
+              _this9.runtime.ioDevices.video.provider._video.src = window.URL.createObjectURL(stream);
+            } // Needed for Safari/Firefox, Chrome auto-plays.
+
+
+            _this9.runtime.ioDevices.video.provider._video.play();
+
+            _this9.runtime.ioDevices.video.provider._track = stream.getTracks()[0];
+          });
+        }
+      }
+    }
+  }, {
+    key: "getDevices",
+    value: function getDevices() {
+      return this.devices;
     }
   }], [{
     key: "EXTENSION_NAME",
