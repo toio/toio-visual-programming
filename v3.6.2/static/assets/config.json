@@ -1,0 +1,10 @@
+{
+  "allowed_extension_urls": [
+    "https://toio.github.io/",
+    "https://toio.io/",
+    "http://localhost:8080/",
+    "https://studyapps.github.io/bidirectional-comm/bidirectional-comm.mjs",
+    "https://studyapps.github.io/bidirectional-comm/bidirectional-comm-trial.mjs",
+    "https://studyapps.github.io/bidirectional-comm/bidirectional-comm-basic.mjs"
+  ]
+}
